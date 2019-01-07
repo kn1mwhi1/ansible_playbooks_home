@@ -1,5 +1,10 @@
 ---
 # This playbook contains common plays that will be run on all nodes.
+- name: Creates directory
+  file:
+    path: /root/scripts
+    state: directory
+    
 - name: copy check_in.sh script
   template: src=check_in.sh dest=/root/scripts/check_in.sh mode=700
   tags: script
