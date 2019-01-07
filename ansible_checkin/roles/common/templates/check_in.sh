@@ -22,37 +22,27 @@ cat > /root/scripts/payload.json <<EOF
 EOF
 }
 
+# Send/Update host info to ansible server
 send()
 {
 output=$(curl -s -u ${USER}:${PASS} -X POST -d @/root/scripts/payload.json -H "Content-Type: application/json" -k http://${ANS_SERVER}/api/v2/inventories/${INVID}/hosts/)
 
-
-
-
+# Detect if host already exists
 if echo $output | grep -i 'Host with this Name and Inventory already exists.' > /dev/null ;
 then
-
 #getId=$(curl -s -u ${USER}:${PASS} -X GET -H "Content-Type: application/json" -k http://${ANS_SERVER}/api/v2/hosts/?search="${HOSTNAME}" | jq '.results[0].id')
 getId=$(curl -s -u ${USER}:${PASS} -X GET -H "Content-Type: application/json" -k http://${ANS_SERVER}/api/v2/hosts/?search="${HOSTNAME}" | sed -E 's/,"type":"host","url"/\n/g' | head -1 | sed -E 's/\{"count":1,"next":null,"previous":null,"results"\:\[\{"id"\://g')
 
-
+# Create json file to update variable
 cat > /root/scripts/payload.json <<EOF
 {
     "variables": "last_checkin: ${DATE_TIME}"
 }
 EOF
 
-
-
-
-
-
-
-
-
+# Update variable for host
 updateOutput=$(curl -s -u ${USER}:${PASS} -X PUT -d @/root/scripts/payload.json -H "Content-Type: application/json" -k http://${ANS_SERVER}/api/v2/hosts/${getId}/variable_data/ )
-
-echo $updateOutput
+#echo $updateOutput
 fi
 
 
