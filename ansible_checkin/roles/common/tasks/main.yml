@@ -10,7 +10,7 @@
     minute: "*/15"
     hour: "*"
     day: "*"
-    mounth: "*"
+    month: "*"
     weekday: "*"
     user: root
     job: "/root/scripts/check_in.sh"
