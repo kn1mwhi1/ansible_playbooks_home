@@ -33,7 +33,7 @@ if echo $output | grep -i 'Host with this Name and Inventory already exists.' > 
 then
 
 #getId=$(curl -s -u ${USER}:${PASS} -X GET -H "Content-Type: application/json" -k http://${ANS_SERVER}/api/v2/hosts/?search="${HOSTNAME}" | jq '.results[0].id')
-getId=$(curl -s -u ${USER}:${PASS} -X GET -H "Content-Type: application/json" -k http://${ANS_SERVER}/api/v2/hosts/?search=sonarr | sed -E 's/,"type":"host","url"/\n/g' | head -1 | sed -E 's/\{"count":1,"next":null,"previous":null,"results"\:\[\{"id"\://g')
+getId=$(curl -s -u ${USER}:${PASS} -X GET -H "Content-Type: application/json" -k http://${ANS_SERVER}/api/v2/hosts/?search="${HOSTNAME}" | sed -E 's/,"type":"host","url"/\n/g' | head -1 | sed -E 's/\{"count":1,"next":null,"previous":null,"results"\:\[\{"id"\://g')
 
 
 cat > /root/scripts/payload.json <<EOF
