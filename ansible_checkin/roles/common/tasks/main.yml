@@ -7,7 +7,11 @@
 - name: Creates a cron file under /etc/cron.d
   cron:
     name: Ansible check in
-    minute: 15
+    minute: "*/15"
+    hour: "*"
+    day: "*"
+    mounth: "*"
+    weekday: "*"
     user: root
     job: "/root/scripts/check_in.sh"
     cron_file: ansible_check_in
