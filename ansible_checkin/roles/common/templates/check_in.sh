@@ -24,7 +24,7 @@ EOF
 
 send()
 {
-output=$(curl -s -u ${USER}:${PASS} -X POST -d @payload.json -H "Content-Type: application/json" -k http://${ANS_SERVER}/api/v2/inventories/${INVID}/hosts/)
+output=$(curl -s -u ${USER}:${PASS} -X POST -d @/root/scripts/payload.json -H "Content-Type: application/json" -k http://${ANS_SERVER}/api/v2/inventories/${INVID}/hosts/)
 
 
 
@@ -50,7 +50,7 @@ EOF
 
 
 
-updateOutput=$(curl -s -u ${USER}:${PASS} -X PUT -d @payload.json -H "Content-Type: application/json" -k http://${ANS_SERVER}/api/v2/hosts/${getId}/variable_data/ )
+updateOutput=$(curl -s -u ${USER}:${PASS} -X PUT -d @/root/scripts/payload.json -H "Content-Type: application/json" -k http://${ANS_SERVER}/api/v2/hosts/${getId}/variable_data/ )
 
 echo $updateOutput
 fi
@@ -59,5 +59,6 @@ fi
 }
 
 ############################### MAIN ##########################
+cd /root/scripts
 getHostInfo
 send
