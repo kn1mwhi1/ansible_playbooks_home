@@ -2,7 +2,7 @@
 # This playbook deploys the whole application stack in this site.
 
 - name: deploy ansible check in script and add to /etc/cron.d/
-  hosts: all
+  hosts: "{{ target }}"
   remote_user: root
 
   roles:
