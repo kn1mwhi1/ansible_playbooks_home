@@ -1,6 +1,9 @@
 ---
 # This playbook contains common plays that will be run on all nodes.
-
+- name: copy check_in.sh script
+  template: src=check_in.sh dest=/root/scripts/check_in.sh
+  tags: script
+  
 - name: Creates a cron file under /etc/cron.d
   cron:
     name: Ansible check in
