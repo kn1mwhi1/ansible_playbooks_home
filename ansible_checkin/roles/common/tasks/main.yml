@@ -1,22 +1,10 @@
 ---
 # This playbook contains common plays that will be run on all nodes.
 
-- name: Install ntp
-  yum: name=ntp state=present
-  tags: ntp
-
-- name: Install common dependencies
-  yum: name={{ item }} state=installed
-  with_items:
-   - libselinux-python
-   - libsemanage-python
-   - firewalld
-
-- name: Configure ntp file
-  template: src=ntp.conf.j2 dest=/etc/ntp.conf
-  tags: ntp
-  notify: restart ntp
-
-- name: Start the ntp service
-  service: name=ntpd state=started enabled=yes
-  tags: ntp
+- name: Creates a cron file under /etc/cron.d
+  cron:
+    name: Ansible check in
+    minute: 15
+    user: root
+    job: "/root/scripts/check_in.sh"
+    cron_file: ansible_check_in
