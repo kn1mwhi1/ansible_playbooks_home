@@ -1,6 +1,5 @@
 - hosts: localhost
-tasks:
-
+  tasks:
   - name: "Pass workflow variable"
     set_stats:
       data:
