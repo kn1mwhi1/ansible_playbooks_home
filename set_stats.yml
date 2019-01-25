@@ -4,4 +4,5 @@
     set_stats:
       data:
         workflow_hosts:  "{{workflow_hosts}}"
+        per_host: no
     ignore_errors: yes
