@@ -1,4 +1,5 @@
 - hosts: localhost
+  gather_facts: no
   tasks:
   - name: "Pass workflow variable"
     set_stats:
