@@ -5,3 +5,4 @@ tasks:
     set_stats:
       data:
         workflow_hosts:  "{{workflow_hosts}}"
+    ignore_errors: yes
