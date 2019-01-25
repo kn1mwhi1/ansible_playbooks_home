@@ -1,0 +1,7 @@
+- hosts: localhost
+tasks:
+
+  - name: "Pass workflow variable"
+    set_stats:
+      data:
+        workflow_hosts:  "{{workflow_hosts}}"
