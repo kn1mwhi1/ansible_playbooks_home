@@ -32,6 +32,7 @@
         user: "{{ansible_login}}"
         password: "{{ansible_password}}"
         force_basic_auth: yes
+        status_code: 201
         body:
           #inventory: "2"
           #credentials: "3"
@@ -40,4 +41,4 @@
         body_format: json
       register: http_output_all
     - debug:
-        var: '{{http_output_all.json |  from_json }}'
+        var: http_output_all.json.id
