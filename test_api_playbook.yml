@@ -1,0 +1,43 @@
+---
+- hosts: "{{target}}"
+  gather_facts: true
+  vars:
+    test: "This is a test"
+    ansible_login: "admin"
+    ansible_password: "password"
+  tasks:
+    - name: "1st Task"
+      shell: "ls"
+      register: output
+    - debug:
+        var: output.stdout_lines
+
+    - name: "Get Ansible"
+      uri:
+        url: https://10.0.0.3/api/v2/hosts/?search=llllll               #{{ansible_hostname}}
+        validate_certs: False
+        method: GET
+        user: "{{ansible_login}}"
+        password: "{{ansible_password}}"
+        force_basic_auth: yes
+      register: http_output
+    - debug:
+        var: http_output.results
+
+    - name: "Get Ansible all"
+      uri:
+        url: https://10.0.0.3/api/v2/job_templates/9/launch/               #{{ansible_hostname}}
+        validate_certs: False
+        method: POST
+        user: "{{ansible_login}}"
+        password: "{{ansible_password}}"
+        force_basic_auth: yes
+        body:
+          #inventory: "2"
+          #credentials: "3"
+          extra_vars:
+            target: "all"
+        body_format: json
+      register: http_output_all
+    - debug:
+        var: '{{http_output_all.json |  from_json }}'
