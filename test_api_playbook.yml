@@ -24,7 +24,7 @@
     - debug:
         var: http_output.results
 
-    - name: "Get Ansible all"
+    - name: "Launch Job id"
       uri:
         url: https://10.0.0.3/api/v2/job_templates/9/launch/               #{{ansible_hostname}}
         validate_certs: False
