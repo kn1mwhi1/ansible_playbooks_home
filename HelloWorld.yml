@@ -8,6 +8,7 @@
   
   vars:
     ansible_ssh_pipelining: yes
+    pipelining: yes
   
   tasks:
   - name: Create a file called '/tmp/testfile.txt' with the content 'hello world'.
