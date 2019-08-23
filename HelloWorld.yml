@@ -1,8 +1,13 @@
 ---
 - name: This is a hello-world example
   hosts: "{{ target }}"
+  remote_user: kn1mwhi1
+  become: yes
+  become_user: root
+  become_method: su
+  ansible_ssh_pass: Cahlind2400
+  
   tasks:
   - name: Create a file called '/tmp/testfile.txt' with the content 'hello world'.
-    copy: 
-      content: "hello world\n" 
-      dest: /tmp/testfile.txt
+    shell: ls -lart
+    
