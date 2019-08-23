@@ -6,6 +6,8 @@
   become_user: root
   become_method: su
   
+  vars:
+    ansible_ssh_pipelining: yes
   
   tasks:
   - name: Create a file called '/tmp/testfile.txt' with the content 'hello world'.
